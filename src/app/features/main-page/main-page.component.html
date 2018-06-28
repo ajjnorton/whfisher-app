@@ -1,0 +1,95 @@
+
+  
+  <div fxLayout="column" fxLayoutAlign="center center" class="main-container">
+  
+  
+    <div class="table-container">
+  
+      <div fxLayout="column" fxLayoutAlign="start" class="title-text">
+        <span class="header-text">Angular 6 Challenge</span>
+        <span class="header-sub-text">Anthony Norton - Wed 27th June 2018</span>
+      </div>
+  
+      <div fxLayout="column" fxLayoutAlign="start" class="title-text">
+        <mat-tab-group>
+          <mat-tab label="Albums">
+            <div>
+              <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Data">
+              </mat-form-field>
+            </div>
+  
+            <div class="container mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource" matSort>
+  
+                <!-- Album Column -->
+                <ng-container matColumnDef="albumId">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Album</th>
+                  <td mat-cell *matCellDef="let row"> {{row.albumId}} </td>
+                </ng-container>
+  
+                <!-- ID Column -->
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                  <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                </ng-container>
+  
+                <!-- Thumbnail Column -->
+                <ng-container matColumnDef="thumbnailUrl">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Thumbnail</th>
+                  <td mat-cell *matCellDef="let row">
+                    <img height="80" src="{{row.thumbnailUrl}}" alt="">
+  
+                  </td>
+                </ng-container>
+  
+                <!-- Title Column -->
+                <ng-container matColumnDef="title">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+                  <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.title}} </td>
+                </ng-container>
+  
+                <!-- URL Column -->
+                <ng-container matColumnDef="url">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> URL </th>
+                  <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.url}} </td>
+                </ng-container>
+  
+  
+  
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+              </table>
+  
+              <mat-paginator [pageSizeOptions]="[50, 100, 1000]"></mat-paginator>
+            </div>
+          </mat-tab>
+          <mat-tab label="Assumptions">
+            <h2>Assumbtions</h2>
+            <!-- two line list -->
+            
+            <mat-list>
+                <mat-divider></mat-divider>
+              <mat-list-item *ngFor="let assumption of assumptions">
+                  <mat-divider></mat-divider>
+                <h3 matLine> {{assumption.title}} </h3>
+                <p matLine style="line-height:25px; margin-bottom:10px; color:#999;">
+                  <span> {{assumption.text}} </span>
+                </p>
+              </mat-list-item>
+           
+            </mat-list>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+  
+  
+  
+  
+  
+  
+  
+    </div>
+  
+  </div>
